@@ -1,35 +1,25 @@
 #include <bits/stdc++.h>
 using namespace std;
+using ll = long long;
 
-const int N = 2 * (1e5 + 2);
-const int VERY_MIN = -1e9;
-
-int a[N], n;
-
-void solve() {
-	a[0] = 0;
-	int ret{VERY_MIN};
-	int sum{};
-	int x;
-	for (int i{1}; i <= n; ++i) {
-		cin >> x;
-		if (i == 1) {
-			ret = x;
-		}
-		sum += x;
-		a[i] = min(a[i - 1], sum);
-		
-		ret = max(sum - a[i - 1], ret);
-	}
-	cout << ret << "\n";
-}
+const int N = 2e5;
+const ll MIN_ = -1e18;
+ll f[N], n;
 
 int main() {
-	ios::sync_with_stdio(false);
-	cout.tie(nullptr);
-	cin.tie(nullptr);
-	cin >> n;
-	solve();
-
+	cin >> n >> f[0];
+	for (int i{1}; i < n; ++i) {
+		cin >> f[i];
+		f[i] += f[i - 1];
+	}
+	
+	ll prevmin{0};
+	ll ret{MIN_};
+	for (int i{}; i < n; ++i) {
+		ret = max(ret, f[i] - prevmin);
+		prevmin = min(f[i], prevmin);
+	}
+	
+	cout << ret << "\n";
 	return 0;
 }
