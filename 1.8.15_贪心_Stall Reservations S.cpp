@@ -15,7 +15,10 @@ int main() {
 	cin.tie(nullptr);
 
 	cin >> n;
-	for (int i{}; i < n; ++i) cin >> c[i].a >> c[i].b;
+	for (int i{}; i < n; ++i) {
+		cin >> c[i].a >> c[i].b;
+		c[i].id = i;
+	}
 	sort(c, c + n, [](const Cow& a, const Cow& b) {
 		return a.a < b.a;
 	});
