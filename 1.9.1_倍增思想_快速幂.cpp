@@ -1,22 +1,29 @@
 #include <iostream>
 using namespace std;
-typedef long long LL;
-// a^b % p 的值
-LL quickpow(LL a, LL b, LL p)
-{
-LL ret = 1;
-while(b)
-{
-if(b & 1) ret = ret * a % p;
-a = a * a % p;
-b >>= 1; // 提取 b 的⼆进制位
-} r
-eturn ret;
-} i
-nt main()
-{
-LL a, b, p;
-scanf("%lld%lld%lld", &a, &b, &p);
-printf("%lld^%lld mod %lld=%lld\n", a, b, p, quickpow(a, b, p));
-return 0;
+
+using ll = long long;
+
+ll a, b, m;
+
+// ll mypow(ll a, ll b) {
+	// if (b == 0) return 1;
+	// ll halfpow = mypow(a, b / 2) % m;
+	// return (b % 2 == 0 ? 1 : a) * (halfpow * halfpow % m) % m;
+// }
+
+ll mypow(ll a, ll b) {
+	ll ret = 1;
+	while (b) {
+		if (b & 1) ret = ret * a % m;
+		a = a * a % m;
+		b >>= 1;
+		}
+	return ret;
+}
+
+int main() {
+	cin >> a >> b >> m;
+	ll ret = mypow(a, b);
+	cout << a << "^" << b << " mod " << m << "=" << ret << "\n";
+	return 0;
 }
