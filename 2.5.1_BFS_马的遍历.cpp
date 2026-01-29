@@ -9,8 +9,6 @@ const int N = 407;
 int f[N][N];
 
 using pos = pair<int, int>;
- 
-
 
 int main() {
 	ios::sync_with_stdio(false);
