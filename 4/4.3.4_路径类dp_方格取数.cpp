@@ -32,7 +32,5 @@ int main() {
             }
         }
     }
-    cout << f[2 * n][n][n] << "\n";
-
     return 0;
 }
