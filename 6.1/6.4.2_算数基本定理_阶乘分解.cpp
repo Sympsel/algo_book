@@ -2,21 +2,17 @@
 using namespace std;
 
 const int N = 1e6 + 7;
-int n;
-int cnt[N];
-bool st[N];
-vector<int> p;
 using ll = long long;
+int n;
+int p[N], cnt;
+bool st[N];
 
-
-void getp() {
+void sel() {
     for (int i{2}; i <= n; ++i) {
-        if (!st[i]) p.emplace_back(i);
-
-        for (auto& x : p) {
-            if (1ll * i * x > n) break;
-            st[i * x] = true;
-            if (i % x == 0) break;
+        if (!st[i]) p[++cnt] = i;
+        for (int j{1}; 1ll * i * p[j] <= n; ++j) {
+            st[i * p[j]] = true;
+            if (i % p[j] == 0) break;
         }
     }
 }
@@ -27,20 +23,15 @@ int main() {
 
     cin >> n;
 
-    getp();
+    sel();
 
-    for (int i{2}; i <= n; ++i) {
-        if (st[i]) continue;
-        ll t{i};
-        while (1LL * n >= t) {
-            cnt[i] += n / t;
-            t *= i;
+    for (int i{1}; i <= cnt; ++i) {
+        int c{};
+        for (ll j{1ll * p[i]}; j <= n; j *= p[i]) {
+            c += n / j;
         }
+        cout << p[i] << " " << c << "\n";
     }
-
-    for (int i{2}; i <= n; ++i)
-        if (cnt[i])
-            cout << i << " " << cnt[i] << "\n";
 
     return 0;
 }

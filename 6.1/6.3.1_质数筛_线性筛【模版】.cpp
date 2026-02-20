@@ -1,31 +1,30 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-const int N = 1e6 + 7;
-int n;
-vector<int> p;
+const int N = 1e8 + 7;
+using ll = long long;
 bool st[N];
+int p[N], cnt;
+int n;
+
+void sel() {
+    for (int i{2}; i <= n; ++i) {
+        if (!st[i]) p[++cnt] = i;
+        for (int j{1}; 1ll * i * p[j] <= n; ++j) {
+            st[i * p[j]] = true;
+            if (i * p[j] == 0) break;
+        }
+    }
+}
 
 int main() {
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
-    int n; cin >> n;
-
-    for (int i{2}; i <= n; ++i) {
-        if (!st[i]) {
-            p.emplace_back(i);
-        }
-
-        for (const auto& x : p) {
-            st[i * x] = true;
-            if (i % x == 0) break;
-        }
+    int q, x;
+    scanf("%d%d", &n, &q);
+    sel();
+    while (q--) {
+        scanf("%d", &x);
+        printf("%d\n", p[x]);
     }
-
-    for (const auto& x : p) {
-        cout << x << " ";
-    }
-    cout << "\n";
 
     return 0;
 }
