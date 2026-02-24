@@ -9,12 +9,8 @@ ll n, k;
 struct mat {
     ll m[N][N];
 
-    mat() {
+    mat(bool to_unit = false) {
         memset(m, 0, sizeof m);
-    }
-
-    mat(bool to_unit) {
-        mat();
         if (to_unit)
             for (int i{1}; i <= n; ++i)
                 m[i][i] = 1;
