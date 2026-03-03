@@ -6,7 +6,7 @@ int n;
 const double Z{1e-7};
 double a[N][N];
 
-bool zero(double num) {
+inline bool zero(double num) {
     return fabs(num) < Z;
 }
 
@@ -18,7 +18,7 @@ void gauss() {
             if (fabs(a[j][i]) > fabs(a[aim][i])) aim = j;
         }
 
-        for (int j{1}; j <= n; ++j) swap(a[i][j], a[aim][j]);
+        for (int j{1}; j <= n + 1; ++j) swap(a[i][j], a[aim][j]);
         for (int j{n + 1}; j >= 1; --j) a[i][j] /= a[i][i];
         for (int j{1}; j <= n; ++j) {
             if (i == j) continue;
