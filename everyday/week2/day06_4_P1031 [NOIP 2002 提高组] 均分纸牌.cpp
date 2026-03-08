@@ -23,7 +23,7 @@ int main() {
         ++cnt;
     }
     if (a[n] != avg) ++cnt;
-    cout << cnt;
+    cout <<
 
 
     return 0;
