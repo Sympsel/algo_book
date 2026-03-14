@@ -1,61 +1,38 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <algorithm>
 using namespace std;
 
-int len, n, k;
-vector<int> a;
+const int N = 1e5 + 7;
+int L, n, k;
+int a[N];
+int b[N];
+
+bool check(int x) {
+    int cnt{};
+    for (int i{1}; i <= n; ++i) {
+        cnt += b[i] / x;
+        if (b[i] % x == 0) --cnt;
+        if (cnt > k) return false;
+    }
+    return cnt <= k;
+}
 
 int main() {
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
-    cin >> len >> n >> k;
-    int _;
+    cin >> L >> n >> k;
+    int _; cin >> _;
+    --n;
     for (int i{1}; i <= n; ++i) {
-        cin >> _;
-        a.emplace_back(_);
+        cin >> a[i];
+        b[i] = a[i] - a[i - 1];
     }
-    sort(a.begin(), a.end());
-    n = a.size();
-    // for (auto x : a) {
-    //     cout << x << " ";
-    // }
-    // cout << "\n";
-
-    priority_queue<int> q;
-    for (int i{1}; i < n; ++i) {
-        q.emplace(a[i] - a[i - 1]);
+    sort(b + 1, b + 1 + n, [](const int& x, const int& y) {return x > y;});
+    int l{1}, r{L};
+    while (l < r) {
+        int mid{(l + r) / 2};
+        if (check(mid)) r = mid;
+        else l = mid + 1;
     }
-
-    while (k-- && q.size()) {
-        auto sz{q.top()}; q.pop();
-        // cout << sz << "\n";
-        if (sz <= 1) {
-            continue;
-        }
-        q.emplace(sz / 2);
-        if (sz % 2 == 1) {
-            q.emplace(sz / 2 + 1);
-        }
-    }
-    cout << q.top() << "\n";
+    cout << l << "\n";
 
     return 0;
 }
-
-
-// #include <bits/stdc++.h>
-// using namespace std;
-
-// const int L = 1e7 + 3;
-// const int N = 1e5 + 7;
-// int len, n, k;
-
-
-
-// int main() {
-//     ios::sync_with_stdio(false);
-//     cin.tie(nullptr);
-//     cin >> len >> n >> k;
-
-
-//     return 0;
-// }
