@@ -1,1 +1,11 @@
-day24_4_P1868 饥饿的奶牛.cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+
+
+    return 0;
+}
