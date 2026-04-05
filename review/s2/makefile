@@ -1,4 +1,4 @@
-SRC=6.cpp
+SRC=7.cpp
 OUT=test
 CXX=g++
 CXXFLAGS=-std=c++17 -O2
