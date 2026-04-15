@@ -1,6 +1,6 @@
 /模版.cpp
 
 # 屏蔽追踪测试用例
-/**/.cph/*
-/**/*.exe
-/**/.fuse_hidden*
+.cph
+*.exe
+.fuse_hidden*
