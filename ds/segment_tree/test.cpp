@@ -67,6 +67,6 @@ void update_range(vector<node>& tree, int root, int left, int right, int ul, int
 }
 
 int main() {
-
+    
     return 0;
 }
